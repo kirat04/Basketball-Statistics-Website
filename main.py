@@ -9,7 +9,7 @@ def init_db():
     c.execute('''CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY, name TEXT)''')
     conn.commit()
     conn.close()
-
+##jjj
 @app.route('/')
 def index():
     return render_template('index.html')
