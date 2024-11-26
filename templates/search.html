@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="search-container">
+        <h1>Search</h1>
+    <form action="/search" method="POST" style="display: inline;">
+        <input type="text" name="query" class="search-bar" placeholder="Type your search query here...">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+    </div>
+    <h1>Search Results</h1>
+    <div id="results">
+        {% if items %}
+            <ul>
+                {% for item in items %}
+                    <li>{{ item.name }} - {{ item.description }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
