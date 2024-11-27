@@ -9,7 +9,7 @@ def init_db():
     c.execute('''CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY, name TEXT)''')
     conn.commit()
     conn.close()
-##jjj
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -17,7 +17,7 @@ def index():
 @app.route('/search', methods=['GET', 'POST'])
 def search():
     if request.method == 'POST':
-        search_query = request.form['query']
+        search_query = request.form['points']
         print("Search request received:" + search_query)
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
