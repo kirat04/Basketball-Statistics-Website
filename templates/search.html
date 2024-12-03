@@ -19,7 +19,7 @@
         {% if items %}
             <ul>
                 {% for item in items %}
-                    <li>{{ item.name }} - {{ item.description }}</li>
+                    <li>{{ item[0] }}</li>
                 {% endfor %}
             </ul>
         {% else %}

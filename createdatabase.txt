@@ -1,0 +1,104 @@
+-- Creating the Games table
+CREATE TABLE Games (
+    game_Id INTEGER PRIMARY KEY,
+    Date TEXT NOT NULL,
+    season_played INTEGER NOT NULL
+);
+
+-- Creating the Players table
+CREATE TABLE Players (
+    player_ID INTEGER PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE
+);
+
+-- Creating the Teams table
+CREATE TABLE Teams (
+    full_name TEXT PRIMARY KEY,
+    date_joined TEXT NOT NULL
+);
+
+-- Creating the Seasons table
+CREATE TABLE Seasons (
+    Year INTEGER PRIMARY KEY,
+    commissioner TEXT NOT NULL
+);
+
+-- Creating the Competed_In table
+CREATE TABLE Competed_In (
+    team TEXT NOT NULL,
+    game INTEGER NOT NULL,
+    coach TEXT NOT NULL,
+    PRIMARY KEY (team, game),
+    FOREIGN KEY (team) REFERENCES Teams(full_name),
+    FOREIGN KEY (game) REFERENCES Games(game_Id)
+);
+
+-- Creating the Played_In table
+CREATE TABLE Played_In (
+    player INTEGER NOT NULL,
+    game INTEGER NOT NULL,
+    points INTEGER,
+    assists INTEGER,
+    rebounds INTEGER,
+    steals INTEGER,
+    blocks INTEGER,
+    PRIMARY KEY (player, game),
+    FOREIGN KEY (player) REFERENCES Players(player_ID),
+    FOREIGN KEY (game) REFERENCES Games(game_Id)
+);
+
+
+INSERT INTO Teams (full_name, date_joined)
+VALUES 
+    ('Atlanta Hawks', '1949'),
+    ('Boston Celtics', '1946'),
+    ('Brooklyn Nets', '1967'),
+    ('Charlotte Hornets', '1988'),
+    ('Chicago Bulls', '1966'),
+    ('Cleveland Cavaliers', '1970'),
+    ('Dallas Mavericks', '1980'),
+    ('Denver Nuggets', '1967'),
+    ('Detroit Pistons', '1941'),
+    ('Golden State Warriors', '1946'),
+    ('Houston Rockets', '1967'),
+    ('Indiana Pacers', '1967'),
+    ('LA Clippers', '1970'),
+    ('Los Angeles Lakers', '1947'),
+    ('Memphis Grizzlies', '1995'),
+    ('Miami Heat', '1988'),
+    ('Milwaukee Bucks', '1968'),
+    ('Minnesota Timberwolves', '1989'),
+    ('New Orleans Pelicans', '2002'),
+    ('New York Knicks', '1946'),
+    ('Oklahoma City Thunder', '1967'),
+    ('Orlando Magic', '1989'),
+    ('Philadelphia 76ers', '1946'),
+    ('Phoenix Suns', '1968'),
+    ('Portland Trail Blazers', '1970'),
+    ('Sacramento Kings', '1948'),
+    ('San Antonio Spurs', '1976'),
+    ('Toronto Raptors', '1995'),
+    ('Utah Jazz', '1974'),
+    ('Washington Wizards', '1961');
+
+
+
+INSERT OR IGNORE INTO Players (name)
+VALUES ('LeBron James');
+
+
+SELECT * FROM played_in;
+
+SELECT * FROM played_in WHERE game = 1;
+
+INSERT OR IGNORE INTO seasons (year,commissioner)
+VALUES (2014,'Adam Silver');
+
+INSERT OR IGNORE INTO Games (Date, season_played)
+VALUES ('3/3/2014',2014);
+
+INSERT OR IGNORE INTO played_in (player,game,points,assists,rebounds,steals,blocks)
+VALUES (1,1,61,4,7,0,0);
+
+INSERT OR IGNORE INTO competed_in (team,game,coach)
+VALUES ('Miami Heat', 1, 'Eric Spoelstra');
