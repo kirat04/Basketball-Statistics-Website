@@ -8,6 +8,26 @@
 <body>
     <h1></h1>
     <h2>{{ player[0][0] }} Game Log</h2>
-    <p>{{ player }}</p>
+
+    <table border="1">
+        <tr>
+            <th>Date Played</th>
+            <th>Points</th>
+            <th>Assists</th>
+            <th>Rebounds</th>
+            <th>Steals</th>
+            <th>Blocks</th>
+        </tr>
+        {% for game in player %}
+        <tr>
+            <td>{{ game[2] }}</td>
+            <td>{{ game[4] }}</td>
+            <td>{{ game[6] }}</td>
+            <td>{{ game[5] }}</td>
+            <td>{{ game[7] }}</td>
+            <td>{{ game[8] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

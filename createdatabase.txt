@@ -84,21 +84,23 @@ VALUES
 
 
 INSERT OR IGNORE INTO Players (name)
-VALUES ('LeBron James');
+VALUES ('Jaylen Brown');
+
+INSERT OR IGNORE INTO seasons (year,commissioner)
+VALUES (2022,'Adam Silver');
+
+INSERT OR IGNORE INTO Games (Date, season_played)
+VALUES ('10/20/2021',2022);
+
+INSERT OR IGNORE INTO played_in (player,game,points,assists,rebounds,steals,blocks)
+VALUES (9,25,46,6,9,3,1);
+
+INSERT OR IGNORE INTO competed_in (team,game,coach)
+VALUES ('Boston Celtics',25, 'Ime Udoka');
+
+
 
 
 SELECT * FROM played_in;
 
 SELECT * FROM played_in WHERE game = 1;
-
-INSERT OR IGNORE INTO seasons (year,commissioner)
-VALUES (2014,'Adam Silver');
-
-INSERT OR IGNORE INTO Games (Date, season_played)
-VALUES ('3/3/2014',2014);
-
-INSERT OR IGNORE INTO played_in (player,game,points,assists,rebounds,steals,blocks)
-VALUES (1,1,61,4,7,0,0);
-
-INSERT OR IGNORE INTO competed_in (team,game,coach)
-VALUES ('Miami Heat', 1, 'Eric Spoelstra');
