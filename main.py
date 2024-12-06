@@ -10,12 +10,6 @@ teams = [
     "Oklahoma City Thunder", "Orlando Magic", "Philadelphia 76ers", "Phoenix Suns", "Portland Trail Blazers",
     "Sacramento Kings", "San Antonio Spurs", "Toronto Raptors", "Utah Jazz", "Washington Wizards"
 ]
-# def init_db():
-#     conn = sqlite3.connect('database.db')
-#     c = conn.cursor()
-#     c.execute('''CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY, name TEXT)''')
-#     conn.commit()
-#     conn.close()
 
 @app.route('/')
 def index():
@@ -26,13 +20,10 @@ def search():
     if request.method == 'POST':
         search_query = request.form['query']
         team_query = int(request.form['team'])-1
-
         year = int(request.form['year'])
-        print(year)
-        
         points = int(request.form['points'])
-        print(points)
         print("Search request received:" + teams[team_query] + " " + search_query)
+        
         conn = sqlite3.connect('database.db')
         c = conn.cursor()
         #find the all players that have this name if no team specified else use the team in the query
@@ -51,7 +42,9 @@ def search():
         print(results)
         #for each player, get the games they played in
         game_results = []
+        #if there i a team query, use the team query to get the games
         if team_query != -1 :
+            #if year is 0, get all games, else get games for that year
             if year == 0:
                 for result in results:
                     c.execute('''SELECT Players.name, Games.game_Id, Games.Date, Games.season_played, Played_In.points, Played_In.rebounds, Played_In.assists, Played_In.steals, Played_In.blocks
@@ -77,7 +70,7 @@ def search():
                                 AND Played_In.points > ?
                                 AND Teams.full_name = ?''', (result[0], year, points, teams[team_query]))
                     game_results.append((result, c.fetchall()))
-       
+       #if there is no team query, get all games
         elif year == 0:
             for result in results:
                 c.execute('''SELECT Players.name, Games.game_Id, Games.Date, Games.season_played, Played_In.points, Played_In.rebounds, Played_In.assists, Played_In.steals, Played_In.blocks
@@ -87,6 +80,7 @@ def search():
                              WHERE Players.name = ? 
                                AND Played_In.points > ?''', (result[0], points))
                 game_results.append((result,c.fetchall()))
+        #if there is a year, but no team, get games for that year
         else:
             for result in results:
                 c.execute('''SELECT Players.name, Games.game_Id, Games.Date, Games.season_played, Played_In.points, Played_In.rebounds, Played_In.assists, Played_In.steals, Played_In.blocks
@@ -119,5 +113,4 @@ def player(player_id):
         return "Player not found", 404
 
 if __name__ == '__main__':
-    # init_db()
     app.run(debug=True)

@@ -147,27 +147,31 @@
         {% if items %}
             <ul>
                 {% for item in items %}
-                    <li><a href="/player/{{ item[0][1] }}">{{ item[0][0] }}</a></li>
-                    <table border="1">
-                        <tr>
-                            <th>Date Played</th>
-                            <th>Points</th>
-                            <th>Assists</th>
-                            <th>Rebounds</th>
-                            <th>Steals</th>
-                            <th>Blocks</th>
-                        </tr>
-                        {% for game in item[1] %}
-                        <tr>
-                            <td>{{ game[2] }}</td>
-                            <td>{{ game[4] }}</td>
-                            <td>{{ game[6] }}</td>
-                            <td>{{ game[5] }}</td>
-                            <td>{{ game[7] }}</td>
-                            <td>{{ game[8] }}</td>
-                        </tr>
-                        {% endfor %}
-                    </table>
+                    {% if item[1].__len__() == 0 %}
+                      
+                    {% else %}
+                        <li><a href="/player/{{ item[0][1] }}">{{ item[0][0] }}</a></li>
+                        <table border="1">
+                            <tr>
+                                <th>Date Played</th>
+                                <th>Points</th>
+                                <th>Assists</th>
+                                <th>Rebounds</th>
+                                <th>Steals</th>
+                                <th>Blocks</th>
+                            </tr>
+                            {% for game in item[1] %}
+                            <tr>
+                                <td>{{ game[2] }}</td>
+                                <td>{{ game[4] }}</td>
+                                <td>{{ game[6] }}</td>
+                                <td>{{ game[5] }}</td>
+                                <td>{{ game[7] }}</td>
+                                <td>{{ game[8] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    {% endif %}
                 {% endfor %}
             </ul>
         {% else %}
