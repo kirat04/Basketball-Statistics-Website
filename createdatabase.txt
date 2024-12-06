@@ -47,7 +47,7 @@ CREATE TABLE Played_In (
     FOREIGN KEY (game) REFERENCES Games(game_Id)
 );
 
-
+#inserts all 30 nba teams
 INSERT INTO Teams (full_name, date_joined)
 VALUES 
     ('Atlanta Hawks', '1949'),
@@ -82,7 +82,7 @@ VALUES
     ('Washington Wizards', '1961');
 
 
-
+#template for adding games into the database
 INSERT OR IGNORE INTO Players (name)
 VALUES ('Jaylen Brown');
 
@@ -97,10 +97,3 @@ VALUES (9,25,46,6,9,3,1);
 
 INSERT OR IGNORE INTO competed_in (team,game,coach)
 VALUES ('Boston Celtics',25, 'Ime Udoka');
-
-
-
-
-SELECT * FROM played_in;
-
-SELECT * FROM played_in WHERE game = 1;
