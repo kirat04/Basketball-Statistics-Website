@@ -12,5 +12,3 @@ Files and Folders:
 3. main.py - Source code for the backend implementation
 
 4. README.txt - this file 
-
-5. 3005 Final Project Description and ER Model.pdf - file cppontaing the description and ER diagram aswell as the youtube link
