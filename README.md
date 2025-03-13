@@ -40,7 +40,7 @@ The repository contains the following files and folders:
     cd basketball-statistics-website
     ```
 
-3. Install the required Python packages:
+3. Install the Python packages:
     ```bash
     pip install -r requirements.txt
     ```
